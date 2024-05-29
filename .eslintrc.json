@@ -1,3 +1,41 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript", "prettier"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+
+    // airbnb custom
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+    "react/function-component-definition": [
+      "warn",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/stories/**",
+          "**/*.stories.**",
+          "**/*.test.**",
+          "**/*.spec.**",
+          "**/__tests__/**"
+        ],
+        "optionalDependencies": false
+      }
+    ],
+
+    // airbnb off (필요 없다고 생각하는 옵션 off)
+    "import/prefer-default-export": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "ignorePatterns": ["*.config.*", "node_modules", "*.d.ts", "public/sw.js"]
 }
