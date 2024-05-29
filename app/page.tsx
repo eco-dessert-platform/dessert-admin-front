@@ -1,4 +1,4 @@
-import DemoTable from '@/app/domains/demo/tables/DemoTable';
+import DemoTable from '@/components/demo/tables/DemoTable';
 
 export default function Home() {
   return (
