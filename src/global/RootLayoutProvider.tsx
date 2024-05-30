@@ -3,7 +3,7 @@
 import { ReactNode } from 'react';
 import { RecoilRoot } from 'recoil';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import CustomQueryClientProvider from '@/global/CustomQueryClientProvider';
+import CustomQueryClientProvider from './CustomQueryClientProvider';
 
 const RootLayoutProvider = ({ children }: { children: ReactNode }) => (
   <RecoilRoot>

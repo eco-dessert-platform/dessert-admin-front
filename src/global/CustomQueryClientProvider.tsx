@@ -1,7 +1,7 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SECOND } from '@/shared/constants/time';
+import { SECOND } from '../shared/constants/time';
 
 let browserQueryClient: QueryClient | undefined;
 

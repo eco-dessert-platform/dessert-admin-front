@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Minus, Plus } from 'lucide-react';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/src/shared/components/ui/button';
 import {
   Drawer,
   DrawerClose,
@@ -12,7 +12,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger
-} from '@/components/ui/drawer';
+} from '@/src/shared/components/ui/drawer';
 
 import { data } from './constants';
 
