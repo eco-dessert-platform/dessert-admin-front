@@ -12,7 +12,7 @@ export default function GlobalHeader() {
       </section>
       <section className="flex gap-4">
         <Button asChild variant="link" className="text-background">
-          <Link href={PATH.user}>User</Link>
+          <Link href={PATH.activate}>User</Link>
         </Button>
         <Button asChild variant="link" className="text-background">
           <Link href={PATH.review}>Review</Link>

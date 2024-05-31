@@ -1,7 +1,7 @@
 import UserCountCard from '@/src/domains/user/components/UserCountCard';
 import userService from '@/src/domains/user/queries/service';
 
-async function UserPage() {
+async function UserActivatePage() {
   const allUserCount = await userService.getAllUserCount();
 
   return (
@@ -11,4 +11,4 @@ async function UserPage() {
   );
 }
 
-export default UserPage;
+export default UserActivatePage;
