@@ -14,7 +14,7 @@ export default function GlobalHeader() {
         <Button asChild variant="link" className="text-background">
           <Link href={PATH.user}>User</Link>
         </Button>
-        <Button>
+        <Button asChild variant="link" className="text-background">
           <Link href={PATH.review}>Review</Link>
         </Button>
       </section>
