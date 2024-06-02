@@ -12,10 +12,13 @@ export default function GlobalHeader() {
       </section>
       <section className="flex gap-4">
         <Button asChild variant="link" className="text-background">
-          <Link href={PATH.activate}>User</Link>
+          <Link href={PATH.activate}>통계/분석</Link>
         </Button>
         <Button asChild variant="link" className="text-background">
-          <Link href={PATH.review}>Review</Link>
+          <Link href={PATH.user}>회원 관리</Link>
+        </Button>
+        <Button asChild variant="link" className="text-background">
+          <Link href={PATH.review}>리뷰 관리</Link>
         </Button>
       </section>
     </header>
