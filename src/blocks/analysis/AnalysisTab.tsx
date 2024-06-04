@@ -10,7 +10,7 @@ function AnalysisTab() {
   return (
     <Tabs value={pathname} className="mb-4">
       <TabsList>
-        <TabsTrigger value={PATH.inflow} asChild>
+        {/* <TabsTrigger value={PATH.inflow} asChild>
           <Link href={PATH.inflow}>유입</Link>
         </TabsTrigger>
         <TabsTrigger value={PATH.activate} asChild>
@@ -24,7 +24,7 @@ function AnalysisTab() {
         </TabsTrigger>
         <TabsTrigger value={PATH.recommendation} asChild>
           <Link href={PATH.recommendation}>추천</Link>
-        </TabsTrigger>
+        </TabsTrigger> */}
       </TabsList>
     </Tabs>
   );
