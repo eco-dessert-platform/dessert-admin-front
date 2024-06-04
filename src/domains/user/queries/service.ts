@@ -1,5 +1,5 @@
 import Service from '@/src/shared/queries/service';
-import { ResultResponse } from '@/src/shared/type/response';
+import { ResultResponse } from '@/src/shared/types/response';
 import { AllUserCountResponse } from '../types/user-count';
 
 class UserService extends Service {
