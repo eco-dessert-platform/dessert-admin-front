@@ -7,6 +7,7 @@ class UserService extends Service {
     const { data } = await this.axiosExtend.get<ResultResponse<AllUserCountResponse>>(
       `${process.env.NEXT_PUBLIC_MOCK_API_URL}/mock/all-user-count.json`
     );
+
     return data.result;
   }
 }
