@@ -1,10 +1,11 @@
 const PATH = {
   home: '/',
-  recommendation: '/user/recommendation',
-  activate: '/user/activate',
-  inflow: '/user/inflow',
-  revenue: '/user/revenue',
-  revisit: '/user/revisit',
+  recommendation: '/analysis/recommendation',
+  activate: '/analysis/activate',
+  inflow: '/analysis/inflow',
+  revenue: '/analysis/revenue',
+  revisit: '/analysis/revisit',
+  user: '/user',
   review: '/review'
 };
 

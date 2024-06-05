@@ -1,10 +1,10 @@
-import UserTab from '@/src/blocks/user/UserTab';
+import AnalysisTab from '@/src/blocks/analysis/AnalysisTab';
 import { PropsWithChildren } from 'react';
 
 function Layout({ children }: PropsWithChildren) {
   return (
     <div className="flex w-full flex-col">
-      <UserTab />
+      <AnalysisTab />
       {children}
     </div>
   );

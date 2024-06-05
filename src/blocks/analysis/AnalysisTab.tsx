@@ -5,7 +5,7 @@ import PATH from '@/src/shared/constants/path';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-function UserTab() {
+function AnalysisTab() {
   const pathname = usePathname();
   return (
     <Tabs value={pathname} className="mb-4">
@@ -30,4 +30,4 @@ function UserTab() {
   );
 }
 
-export default UserTab;
+export default AnalysisTab;
