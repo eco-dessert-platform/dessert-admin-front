@@ -10,6 +10,14 @@ class UserService extends Service {
 
     return data.result;
   }
+
+  async getNewUserCount() {
+    const { data } = await this.axiosExtend.get<ResultResponse<AllUserCountResponse>>(
+      `${process.env.NEXT_PUBLIC_MOCK_API_URL}/mock/new-user-count.json`
+    );
+
+    return data.result;
+  }
 }
 
 const userService = new UserService();

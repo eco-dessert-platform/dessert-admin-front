@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "code": 0,
+  "message": "SUCCESS",
+  "result": {
+    "dateAndCount": [
+      { "date": "2024-06-01", "count": 0 },
+      { "date": "2024-06-02", "count": 10 },
+      { "date": "2024-06-03", "count": 20 },
+      { "date": "2024-06-04", "count": 10 },
+      { "date": "2024-06-05", "count": 5 },
+      { "date": "2024-06-06", "count": 5 },
+      { "date": "2024-06-07", "count": 20 },
+      { "date": "2024-06-08", "count": 10 }
+    ],
+    "total": 80,
+    "average": 10
+  }
+}

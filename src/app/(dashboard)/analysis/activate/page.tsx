@@ -1,13 +1,12 @@
-import UserCountCard from '@/src/domains/user/components/UserCountCard';
-import userService from '@/src/domains/user/queries/service';
+import UserCountSection from './_blocks/UserCountSection';
+import WishCountChart from './_blocks/WishCountChart';
 
-async function UserActivatePage() {
-  const allUserCount = await userService.getAllUserCount();
-
+function UserActivatePage() {
   return (
-    <>
-      <UserCountCard title="총 회원 수" count={allUserCount.memberCount} />
-    </>
+    <section className="flex flex-col gap-20">
+      <UserCountSection />
+      <WishCountChart />
+    </section>
   );
 }
 
