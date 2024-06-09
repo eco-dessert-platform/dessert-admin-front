@@ -1,5 +1,3 @@
-'use client';
-
 import wishService from '@/src/domains/wish/queries/service';
 import {
   CartesianGrid,

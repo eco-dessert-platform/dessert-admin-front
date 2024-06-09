@@ -14,24 +14,25 @@ class Service {
     });
 
     api.interceptors.request.use(async (config) => {
+      const newConfig = { ...config };
       const isServer = typeof window === 'undefined';
 
       if (isServer) {
-        const { cookies } = await import('next/headers'),
-          token = cookies().get('accessToken')?.value;
+        const { cookies } = await import('next/headers');
+        const token = cookies().get('accessToken')?.value;
 
         if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
+          newConfig.headers.Authorization = `Bearer ${token}`;
         }
       } else {
         const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
         if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
+          newConfig.headers.Authorization = `Bearer ${token}`;
         }
       }
 
-      return config;
+      return newConfig;
     });
 
     this.axiosExtend = api;

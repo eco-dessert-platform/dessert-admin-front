@@ -6,25 +6,27 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 function AnalysisTab() {
+  const { inflow, activate, revenue, recommendation, revisit } = PATH;
   const pathname = usePathname();
+
   return (
     <Tabs value={pathname} className="mb-4">
       <TabsList>
-        {/* <TabsTrigger value={PATH.inflow} asChild>
-          <Link href={PATH.inflow}>유입</Link>
+        <TabsTrigger value={inflow.href} asChild>
+          <Link href={inflow.href}>{inflow.name}</Link>
         </TabsTrigger>
-        <TabsTrigger value={PATH.activate} asChild>
-          <Link href={PATH.activate}>활성화</Link>
+        <TabsTrigger value={activate.href} asChild>
+          <Link href={activate.href}>{activate.name}</Link>
         </TabsTrigger>
-        <TabsTrigger value={PATH.revisit} asChild>
-          <Link href={PATH.revisit}>재방문</Link>
+        <TabsTrigger value={revisit.href} asChild>
+          <Link href={revisit.href}>{revisit.name}</Link>
         </TabsTrigger>
-        <TabsTrigger value={PATH.revenue} asChild>
-          <Link href={PATH.revenue}>수익</Link>
+        <TabsTrigger value={revenue.href} asChild>
+          <Link href={revenue.href}>{revenue.name}</Link>
         </TabsTrigger>
-        <TabsTrigger value={PATH.recommendation} asChild>
-          <Link href={PATH.recommendation}>추천</Link>
-        </TabsTrigger> */}
+        <TabsTrigger value={recommendation.href} asChild>
+          <Link href={recommendation.href}>{recommendation.name}</Link>
+        </TabsTrigger>
       </TabsList>
     </Tabs>
   );
