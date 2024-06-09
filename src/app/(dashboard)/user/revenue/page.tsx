@@ -1,5 +1,5 @@
 function Page() {
-    return <>User Page</>;
-  }
+  return <>revenue</>;
+}
 
 export default Page;
