@@ -1,5 +1,5 @@
 function Page() {
-    return <>User Page</>;
-  }
+  return <>inflow</>;
+}
 
 export default Page;

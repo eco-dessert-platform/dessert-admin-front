@@ -1,5 +1,5 @@
 function Page() {
-    return <>User Page</>;
-  }
+  return <>recommendation</>;
+}
 
 export default Page;
