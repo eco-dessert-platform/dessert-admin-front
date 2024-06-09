@@ -1,4 +1,6 @@
-import wishService from '@/src/domains/wish/queries/service';
+'use client';
+
+import useWishCountQuery from '@/src/domains/analysis/queries/useWishChartQuery';
 import {
   CartesianGrid,
   Line,
@@ -10,17 +12,19 @@ import {
   YAxis
 } from 'recharts';
 
-async function WishCountChart() {
-  const { dateAndCount, total, average } = await wishService.getWishCount();
+function WishCountChart() {
+  const { data: wishCount } = useWishCountQuery();
+
+  if (!wishCount) return null;
 
   return (
     <section className="flex h-[500px] w-full flex-col items-center justify-center gap-8 p-4">
       <div className="flex w-full items-end justify-between">
         <h1 className="text-xl">위시리스트 이용 비율</h1>
-        <span>누적: {total}회</span>
+        <span>누적: {wishCount.total}회</span>
       </div>
       <ResponsiveContainer className="h-full w-full">
-        <LineChart data={dateAndCount}>
+        <LineChart data={wishCount.dateAndCount}>
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <XAxis dataKey="date" />
@@ -32,7 +36,7 @@ async function WishCountChart() {
             activeDot={{ r: 8 }}
           />
           <ReferenceLine
-            y={average}
+            y={wishCount.average}
             label={{ value: '평균 값', position: 'insideBottomRight' }}
             stroke="red"
           />
