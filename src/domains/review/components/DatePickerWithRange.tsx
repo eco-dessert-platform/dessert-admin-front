@@ -2,18 +2,18 @@
 
 import * as React from 'react';
 import { format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
 import { ko } from 'date-fns/locale';
-
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { cn } from '@/src/shared/lib/utils';
 import { Button } from '@/src/shared/components/ui/button';
 import { Calendar } from '@/src/shared/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/src/shared/components/ui/popover';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { reviewCountChartFilterDates } from '../atoms';
-import { ReviewChartData } from '../types';
 
-export function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivElement>) {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {}
+
+export function DatePickerWithRange({ className }: Props) {
   const [date, setDate] = useRecoilState(reviewCountChartFilterDates);
 
   // console.log(date);
@@ -24,13 +24,14 @@ export function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivE
         <PopoverTrigger asChild>
           <Button
             id="date"
-            variant={'outline'}
+            variant="outline"
             className={cn(
               'w-[300px] justify-start text-left font-normal',
               !date?.from && 'text-muted-foreground'
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
+            {/* eslint-disable-next-line no-nested-ternary */}
             {date?.from ? (
               date?.to ? (
                 <>
