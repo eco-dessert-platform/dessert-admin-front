@@ -1,5 +1,5 @@
-import AnalysisTab from '@/src/blocks/analysis/AnalysisTab';
 import { PropsWithChildren } from 'react';
+import AnalysisTab from './_blocks/AnalysisTab';
 
 function Layout({ children }: PropsWithChildren) {
   return (

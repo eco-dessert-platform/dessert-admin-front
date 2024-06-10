@@ -5,13 +5,15 @@ import { RecoilRoot } from 'recoil';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import CustomQueryClientProvider from './CustomQueryClientProvider';
 
-const RootLayoutProvider = ({ children }: { children: ReactNode }) => (
-  <RecoilRoot>
-    <CustomQueryClientProvider>
-      {children}
-      <ReactQueryDevtools initialIsOpen={false} />
-    </CustomQueryClientProvider>
-  </RecoilRoot>
-);
+function RootLayoutProvider({ children }: { children: ReactNode }) {
+  return (
+    <RecoilRoot>
+      <CustomQueryClientProvider>
+        {children}
+        <ReactQueryDevtools initialIsOpen={false} />
+      </CustomQueryClientProvider>
+    </RecoilRoot>
+  );
+}
 
 export default RootLayoutProvider;
