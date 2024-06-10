@@ -18,7 +18,7 @@ export default function ReviewCountChartFilter() {
 
   return (
     <section className="flex w-full flex-col items-center justify-between sm:flex-row">
-      <div className="grid w-full grid-cols-4 gap-2 py-5 sm:w-auto sm:px-10">
+      <div className="grid w-full grid-cols-4 gap-2 py-5 sm:w-auto sm:px-14">
         <Button
           variant="outline"
           onClick={() => handleClick(moment().subtract(1, 'months').toDate())}

@@ -16,6 +16,13 @@ import { reviewCountChartFilterDates } from '../atoms';
 import data from '../mock/reviewCountMockData.json';
 import moment from 'moment';
 import { ReviewChartData } from '../types';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/src/shared/components/ui/card';
 
 export default function ReviewCountChart() {
   const { from, to } = useRecoilValue(reviewCountChartFilterDates);
@@ -67,8 +74,15 @@ export default function ReviewCountChart() {
 const CustomTotal = ({ data }: { data: ReviewChartData[] }) => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
   return (
-    <div className="py-3 sm:px-10">
-      <p>{`기간 내 총 리뷰 수: ${total}`}</p>
+    <div className="grid grid-cols-2 gap-3 py-3 sm:grid-cols-4 sm:px-14">
+      <Card>
+        <CardHeader>
+          <CardTitle>총 리뷰</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>{total}</CardDescription>
+        </CardContent>
+      </Card>
     </div>
   );
 };
