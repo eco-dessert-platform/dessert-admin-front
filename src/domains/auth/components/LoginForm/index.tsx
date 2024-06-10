@@ -23,15 +23,9 @@ type FormData = {
 
 export default function LoginForm() {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm();
+  const { register, handleSubmit } = useForm<FormData>();
 
-  const onSubmit = (data: any) => {
-    // TODO: authentication process
-    console.log({ data });
+  const onSubmit = () => {
     router.push('/');
   };
 
