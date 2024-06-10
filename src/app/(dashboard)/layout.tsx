@@ -1,4 +1,5 @@
 import GlobalHeader from '@/src/global/GlobalHeader';
+import RootLayoutProvider from '@/src/global/RootLayoutProvider';
 
 export default function DashboardLayout({
   children
@@ -6,11 +7,13 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <GlobalHeader />
-      <main className="flex min-h-screen flex-col items-center justify-between p-5 sm:p-24">
-        {children}
-      </main>
-    </>
+    <RootLayoutProvider>
+      <>
+        <GlobalHeader />
+        <main className="flex min-h-screen flex-col items-center justify-start p-5 sm:p-10">
+          {children}
+        </main>
+      </>
+    </RootLayoutProvider>
   );
 }
