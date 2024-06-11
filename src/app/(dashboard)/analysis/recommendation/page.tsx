@@ -9,20 +9,20 @@ export default async function ReviewPage() {
       <div>
         <h1 className="text-2xl font-bold">전체 누적 리뷰 수</h1>
         <section className="flex w-full">
-          <ReviewCountChartFilter />
+          <ReviewAccCountChartFilter />
         </section>
         <section className="flex h-[500px] w-full">
-          <ReviewCountChart />
+          <ReviewAccCountChart />
         </section>
       </div>
 
       <div>
         <h1 className="text-2xl font-bold">날짜별 리뷰 작성 수</h1>
         <section className="flex w-full">
-          <ReviewAccCountChartFilter />
+          <ReviewCountChartFilter />
         </section>
         <section className="flex h-[500px] w-full">
-          <ReviewAccCountChart />
+          <ReviewCountChart />
         </section>
       </div>
     </div>
