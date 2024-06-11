@@ -3,8 +3,8 @@
 import { useSetRecoilState } from 'recoil';
 import moment from 'moment';
 import { Button } from '@/src/shared/components/ui/button';
-import { DatePickerWithRange } from './DatePickerWithRange';
-import { reviewCountChartFilterDates } from '../atoms';
+import { DatePickerWithRange } from '../../../../../domains/analysis/components/DatePickerWithRange';
+import { reviewCountChartFilterDates } from '../../../../../domains/analysis/atoms/review';
 
 export default function ReviewCountChartFilter() {
   const setReviewCountChartFilterDates = useSetRecoilState(reviewCountChartFilterDates);

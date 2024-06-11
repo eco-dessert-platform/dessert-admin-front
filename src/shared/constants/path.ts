@@ -1,8 +1,6 @@
 const PATH = {
   home: { href: '/', name: '홈' },
   user: { href: '/user', name: '회원' },
-  product: { href: '/product', name: '상품' },
-  store: { href: '/store', name: '스토어' },
   review: { href: '/review', name: '리뷰' },
 
   /* analysis */

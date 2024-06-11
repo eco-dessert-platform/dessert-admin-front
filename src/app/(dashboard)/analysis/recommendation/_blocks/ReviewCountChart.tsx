@@ -19,9 +19,9 @@ import {
   CardHeader,
   CardTitle
 } from '@/src/shared/components/ui/card';
-import { ReviewChartData } from '../types';
-import { reviewCountChartFilterDates } from '../atoms';
-import reviewCountMockData from '../mock/reviewCountMockData.json';
+import { reviewCountChartFilterDates } from '@/src/domains/analysis/atoms/review';
+import { ReviewChartData } from '@/src/domains/analysis/types/review';
+import reviewCountMockData from '@/src/domains/analysis/mock/reviewCountMockData.json';
 
 export default function ReviewCountChart() {
   const { from, to } = useRecoilValue(reviewCountChartFilterDates);

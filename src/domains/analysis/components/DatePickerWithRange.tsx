@@ -9,7 +9,7 @@ import { Button } from '@/src/shared/components/ui/button';
 import { Calendar } from '@/src/shared/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/src/shared/components/ui/popover';
 import { useRecoilState } from 'recoil';
-import { reviewCountChartFilterDates } from '../atoms';
+import { reviewCountChartFilterDates } from '../atoms/review';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 

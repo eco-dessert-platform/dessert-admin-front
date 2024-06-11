@@ -28,7 +28,7 @@ export default function GlobalHeader() {
         </section>
         <section className="hidden gap-4 sm:flex">
           {navigations.map(({ href, name }) => (
-            <Button key={href} variant="link">
+            <Button key={href} variant="link" asChild>
               <Link href={href}>{name}</Link>
             </Button>
           ))}
