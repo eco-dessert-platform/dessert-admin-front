@@ -1,16 +1,18 @@
 'use client';
 
-import { Button } from '@/src/shared/components/ui/button';
-import { DatePickerWithRange } from './DatePickerWithRange';
-import { useSetRecoilState } from 'recoil';
-import { reviewCountChartFilterDates } from '../atoms';
 import moment from 'moment';
+import { Button } from '@/src/shared/components/ui/button';
+import { DateRange } from 'react-day-picker';
+import { DatePickerWithRange } from './DatePickerWithRange';
 
-export default function ReviewCountChartFilter() {
-  const setReviewCountChartFilterDates = useSetRecoilState(reviewCountChartFilterDates);
+interface Props {
+  dateRange: DateRange;
+  onDateRangeChange: (dateRange: DateRange) => void;
+}
 
+export default function DateFilter({ dateRange, onDateRangeChange }: Props) {
   const handleClick = (from: Date) => {
-    setReviewCountChartFilterDates({
+    onDateRangeChange({
       from,
       to: moment().toDate()
     });
@@ -48,7 +50,7 @@ export default function ReviewCountChartFilter() {
         </Button>
       </div>
       <div className="w-full sm:w-auto">
-        <DatePickerWithRange />
+        <DatePickerWithRange dateRange={dateRange} onDateRangeChange={onDateRangeChange} />
       </div>
     </section>
   );

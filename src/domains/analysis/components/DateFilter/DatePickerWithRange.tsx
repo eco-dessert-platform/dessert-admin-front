@@ -2,43 +2,42 @@
 
 import * as React from 'react';
 import { format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
 import { ko } from 'date-fns/locale';
-
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { cn } from '@/src/shared/lib/utils';
 import { Button } from '@/src/shared/components/ui/button';
 import { Calendar } from '@/src/shared/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/src/shared/components/ui/popover';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { reviewCountChartFilterDates } from '../atoms';
-import { ReviewChartData } from '../types';
+import { DateRange } from 'react-day-picker';
 
-export function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivElement>) {
-  const [date, setDate] = useRecoilState(reviewCountChartFilterDates);
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  dateRange: DateRange;
+  onDateRangeChange: (dateRange: DateRange) => void;
+}
 
-  // console.log(date);
-
+export function DatePickerWithRange({ className, dateRange, onDateRangeChange }: Props) {
   return (
     <div className={cn('grid gap-2', className)}>
       <Popover>
         <PopoverTrigger asChild>
           <Button
             id="date"
-            variant={'outline'}
+            variant="outline"
             className={cn(
               'w-[300px] justify-start text-left font-normal',
-              !date?.from && 'text-muted-foreground'
+              !dateRange?.from && 'text-muted-foreground'
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date?.from ? (
-              date?.to ? (
+            {/* eslint-disable-next-line no-nested-ternary */}
+            {dateRange?.from ? (
+              dateRange?.to ? (
                 <>
-                  {format(date.from, 'PPP', { locale: ko })} -{' '}
-                  {format(date.to, 'PPP', { locale: ko })}
+                  {format(dateRange.from, 'PPP', { locale: ko })} -{' '}
+                  {format(dateRange.to, 'PPP', { locale: ko })}
                 </>
               ) : (
-                format(date.from, 'PPP', { locale: ko })
+                format(dateRange.from, 'PPP', { locale: ko })
               )
             ) : (
               <span>Pick a date</span>
@@ -50,12 +49,11 @@ export function DatePickerWithRange({ className }: React.HTMLAttributes<HTMLDivE
             initialFocus
             mode="range"
             locale={ko}
-            defaultMonth={date?.from}
-            selected={date}
+            defaultMonth={dateRange?.from}
+            selected={dateRange}
             onSelect={(selected) => {
               if (!selected) return;
-
-              setDate({
+              onDateRangeChange({
                 from: selected?.from,
                 to: selected?.to
               });

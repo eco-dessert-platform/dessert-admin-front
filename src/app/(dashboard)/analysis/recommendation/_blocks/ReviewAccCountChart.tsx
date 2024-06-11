@@ -11,11 +11,7 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import { useRecoilValue } from 'recoil';
-import { reviewCountChartFilterDates } from '../atoms';
-
-import data from '../mock/reviewCountMockData.json';
 import moment from 'moment';
-import { ReviewChartData } from '../types';
 import {
   Card,
   CardContent,
@@ -23,11 +19,14 @@ import {
   CardHeader,
   CardTitle
 } from '@/src/shared/components/ui/card';
+import { reviewAccCountChartFilterDates } from '@/src/domains/analysis/atoms/review';
+import { ReviewChartData } from '@/src/domains/analysis/types/review';
+import reviewCountMockData from '@/src/domains/analysis/mock/reviewCountMockData.json';
 
-export default function ReviewCountChart() {
-  const { from, to } = useRecoilValue(reviewCountChartFilterDates);
+export default function ReviewAccCountChart() {
+  const { from, to } = useRecoilValue(reviewAccCountChartFilterDates);
 
-  const filteredData = data.filter((el) => {
+  const filteredData = reviewCountMockData.filter((el) => {
     const currentDate = new Date(el.date);
 
     if (!from && !to) return false;
@@ -71,7 +70,7 @@ export default function ReviewCountChart() {
   );
 }
 
-const CustomTotal = ({ data }: { data: ReviewChartData[] }) => {
+function CustomTotal({ data }: { data: ReviewChartData[] }) {
   const total = data.reduce((sum, item) => sum + item.value, 0);
   return (
     <div className="grid grid-cols-2 gap-3 py-3 sm:grid-cols-4 sm:px-14">
@@ -85,4 +84,4 @@ const CustomTotal = ({ data }: { data: ReviewChartData[] }) => {
       </Card>
     </div>
   );
-};
+}
