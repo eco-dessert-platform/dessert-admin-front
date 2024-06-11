@@ -12,11 +12,19 @@ import {
 } from 'recharts';
 import { useRecoilValue } from 'recoil';
 import moment from 'moment';
-import { reviewCountChartFilterDates } from '@/src/domains/analysis/atoms/review';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/src/shared/components/ui/card';
+import { reviewAccCountChartFilterDates } from '@/src/domains/analysis/atoms/review';
+import { ReviewChartData } from '@/src/domains/analysis/types/review';
 import reviewCountMockData from '@/src/domains/analysis/mock/reviewCountMockData.json';
 
-export default function ReviewCountChart() {
-  const { from, to } = useRecoilValue(reviewCountChartFilterDates);
+export default function ReviewAccCountChart() {
+  const { from, to } = useRecoilValue(reviewAccCountChartFilterDates);
 
   const filteredData = reviewCountMockData.filter((el) => {
     const currentDate = new Date(el.date);
@@ -37,6 +45,7 @@ export default function ReviewCountChart() {
 
   return (
     <div className="flex h-full w-full flex-col gap-2">
+      <CustomTotal data={filteredData} />
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           width={500}
@@ -57,6 +66,22 @@ export default function ReviewCountChart() {
           <Line type="monotone" dataKey="value" name="리뷰" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
+    </div>
+  );
+}
+
+function CustomTotal({ data }: { data: ReviewChartData[] }) {
+  const total = data.reduce((sum, item) => sum + item.value, 0);
+  return (
+    <div className="grid grid-cols-2 gap-3 py-3 sm:grid-cols-4 sm:px-14">
+      <Card>
+        <CardHeader>
+          <CardTitle>총 리뷰</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>{total}</CardDescription>
+        </CardContent>
+      </Card>
     </div>
   );
 }

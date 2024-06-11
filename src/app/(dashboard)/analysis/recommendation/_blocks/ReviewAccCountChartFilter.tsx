@@ -4,10 +4,10 @@ import { useRecoilState } from 'recoil';
 import moment from 'moment';
 import { Button } from '@/src/shared/components/ui/button';
 import { DatePickerWithRange } from '@/src/domains/analysis/components/DatePickerWithRange';
-import { reviewCountChartFilterDates } from '@/src/domains/analysis/atoms/review';
+import { reviewAccCountChartFilterDates } from '@/src/domains/analysis/atoms/review';
 
 export default function ReviewCountChartFilter() {
-  const [dates, setDates] = useRecoilState(reviewCountChartFilterDates);
+  const [dates, setDates] = useRecoilState(reviewAccCountChartFilterDates);
 
   const handleClick = (from: Date) => {
     setDates({
