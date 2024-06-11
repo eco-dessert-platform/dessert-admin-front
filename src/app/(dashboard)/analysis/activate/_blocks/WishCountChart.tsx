@@ -1,6 +1,15 @@
 'use client';
 
+import { wishCountChartFilterDates } from '@/src/domains/analysis/atoms/wish';
+import DateFilter from '@/src/domains/analysis/components/DateFilter';
 import useWishCountQuery from '@/src/domains/analysis/queries/useWishChartQuery';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/src/shared/components/ui/card';
 import {
   CartesianGrid,
   Line,
@@ -11,19 +20,29 @@ import {
   XAxis,
   YAxis
 } from 'recharts';
+import { useRecoilState } from 'recoil';
 
 function WishCountChart() {
   const { data: wishCount } = useWishCountQuery();
+  const [dates, setDates] = useRecoilState(wishCountChartFilterDates);
 
   if (!wishCount) return null;
 
   return (
-    <section className="flex h-[500px] w-full flex-col items-center justify-center gap-8 p-4">
-      <div className="flex w-full items-end justify-between">
-        <h1 className="text-xl">위시리스트 이용 비율</h1>
-        <span>누적: {wishCount.total}회</span>
-      </div>
-      <ResponsiveContainer className="h-full w-full">
+    <section className="h-[500px] w-full flex-col  gap-8 p-4">
+      <h1 className="text-2xl font-bold">찜 이용 횟수</h1>
+      <DateFilter dateRange={dates} onDateRangeChange={setDates} />
+
+      <Card className="mx-14 my-3 w-80">
+        <CardHeader>
+          <CardTitle>총 찜 이용 횟수</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>{wishCount.total}</CardDescription>
+        </CardContent>
+      </Card>
+
+      <ResponsiveContainer width="100%" height="100%">
         <LineChart data={wishCount.dateAndCount}>
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />

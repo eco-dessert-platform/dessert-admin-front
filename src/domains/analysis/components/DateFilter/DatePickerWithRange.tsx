@@ -8,16 +8,14 @@ import { cn } from '@/src/shared/lib/utils';
 import { Button } from '@/src/shared/components/ui/button';
 import { Calendar } from '@/src/shared/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/src/shared/components/ui/popover';
-import { useRecoilState } from 'recoil';
-import { reviewCountChartFilterDates } from '../atoms';
+import { DateRange } from 'react-day-picker';
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {}
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  dateRange: DateRange;
+  onDateRangeChange: (dateRange: DateRange) => void;
+}
 
-export function DatePickerWithRange({ className }: Props) {
-  const [date, setDate] = useRecoilState(reviewCountChartFilterDates);
-
-  // console.log(date);
-
+export function DatePickerWithRange({ className, dateRange, onDateRangeChange }: Props) {
   return (
     <div className={cn('grid gap-2', className)}>
       <Popover>
@@ -27,19 +25,19 @@ export function DatePickerWithRange({ className }: Props) {
             variant="outline"
             className={cn(
               'w-[300px] justify-start text-left font-normal',
-              !date?.from && 'text-muted-foreground'
+              !dateRange?.from && 'text-muted-foreground'
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {/* eslint-disable-next-line no-nested-ternary */}
-            {date?.from ? (
-              date?.to ? (
+            {dateRange?.from ? (
+              dateRange?.to ? (
                 <>
-                  {format(date.from, 'PPP', { locale: ko })} -{' '}
-                  {format(date.to, 'PPP', { locale: ko })}
+                  {format(dateRange.from, 'PPP', { locale: ko })} -{' '}
+                  {format(dateRange.to, 'PPP', { locale: ko })}
                 </>
               ) : (
-                format(date.from, 'PPP', { locale: ko })
+                format(dateRange.from, 'PPP', { locale: ko })
               )
             ) : (
               <span>Pick a date</span>
@@ -51,12 +49,11 @@ export function DatePickerWithRange({ className }: Props) {
             initialFocus
             mode="range"
             locale={ko}
-            defaultMonth={date?.from}
-            selected={date}
+            defaultMonth={dateRange?.from}
+            selected={dateRange}
             onSelect={(selected) => {
               if (!selected) return;
-
-              setDate({
+              onDateRangeChange({
                 from: selected?.from,
                 to: selected?.to
               });

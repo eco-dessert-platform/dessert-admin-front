@@ -19,12 +19,12 @@ import {
   CardHeader,
   CardTitle
 } from '@/src/shared/components/ui/card';
-import { ReviewChartData } from '../types';
-import { reviewCountChartFilterDates } from '../atoms';
-import reviewCountMockData from '../mock/reviewCountMockData.json';
+import { reviewAccCountChartFilterDates } from '@/src/domains/analysis/atoms/review';
+import { ReviewChartData } from '@/src/domains/analysis/types/review';
+import reviewCountMockData from '@/src/domains/analysis/mock/reviewCountMockData.json';
 
-export default function ReviewCountChart() {
-  const { from, to } = useRecoilValue(reviewCountChartFilterDates);
+export default function ReviewAccCountChart() {
+  const { from, to } = useRecoilValue(reviewAccCountChartFilterDates);
 
   const filteredData = reviewCountMockData.filter((el) => {
     const currentDate = new Date(el.date);
