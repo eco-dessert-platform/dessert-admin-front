@@ -51,7 +51,13 @@ export function DatePickerWithRange({ className, dateRange, onDateRangeChange }:
             locale={ko}
             defaultMonth={dateRange?.from}
             selected={dateRange}
-            onSelect={onDateRangeChange}
+            onSelect={(selected) => {
+              if (!selected) return;
+              onDateRangeChange({
+                from: selected?.from,
+                to: selected?.to
+              });
+            }}
             numberOfMonths={2}
           />
         </PopoverContent>

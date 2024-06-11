@@ -5,7 +5,7 @@ import ReviewCountChartFilter from './_blocks/ReviewCountChartFilter';
 
 export default async function ReviewPage() {
   return (
-    <div>
+    <div className="my-20 flex flex-col gap-20">
       <div>
         <h1 className="text-2xl font-bold">전체 누적 리뷰 수</h1>
         <section className="flex w-full">
