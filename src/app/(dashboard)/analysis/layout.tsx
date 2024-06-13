@@ -1,10 +1,15 @@
 import { PropsWithChildren } from 'react';
 import AnalysisTab from './_blocks/AnalysisTab';
+import DateFilter from './_blocks/DateFilter';
 
 function Layout({ children }: PropsWithChildren) {
   return (
     <div className="flex w-full flex-col">
-      <AnalysisTab />
+      <div className="my-10 flex items-center justify-between">
+        <AnalysisTab />
+        <DateFilter />
+      </div>
+
       {children}
     </div>
   );
