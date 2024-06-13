@@ -1,29 +1,31 @@
 import Service from '@/src/shared/queries/service';
 import { ResultResponse } from '@/src/shared/types/response';
+import { DateRangeParams } from '@/src/shared/types/request';
+import objToParams from '@/src/shared/utils/objectToParams';
 import { WishCountResponse } from '../types/wish-count';
 import { UserCountResponse } from '../types/user-count';
 
 class AnalysisService extends Service {
-  async getWishCount() {
+  async getWishCount({ startDate, endDate }: DateRangeParams) {
+    const params = objToParams({ startDate, endDate });
+    console.log('test', params);
     const { data } = await this.axiosExtend.get<ResultResponse<WishCountResponse>>(
-      `${process.env.NEXT_PUBLIC_MOCK_API_URL}/mock/wish-count.json`
+      `/analytics/wishlistboards?${params}`
     );
     return data.result;
   }
 
   async getAllUserCount() {
-    const { data } = await this.axiosExtend.get<ResultResponse<UserCountResponse>>(
-      `${process.env.NEXT_PUBLIC_MOCK_API_URL}/mock/all-user-count.json`
-    );
-
+    const { data } =
+      await this.axiosExtend.get<ResultResponse<UserCountResponse>>(`/analytics/members/count`);
     return data.result;
   }
 
-  async getNewUserCount() {
+  async getNewUserCount({ startDate, endDate }: DateRangeParams) {
+    const params = objToParams({ startDate, endDate });
     const { data } = await this.axiosExtend.get<ResultResponse<UserCountResponse>>(
-      `${process.env.NEXT_PUBLIC_MOCK_API_URL}/mock/new-user-count.json`
+      `/analytics/new-members/count?${params}`
     );
-
     return data.result;
   }
 }

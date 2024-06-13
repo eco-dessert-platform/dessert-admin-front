@@ -1,10 +1,13 @@
 'use client';
 
+import { dateFilterParamsState } from '@/src/domains/analysis/atoms/date-filter';
 import useUserCountQueries from '@/src/domains/analysis/queries/useUserCountQueries';
 import { Card, CardContent, CardHeader } from '@/src/shared/components/ui/card';
+import { useRecoilValue } from 'recoil';
 
 function UserCountSection() {
-  const [{ data: allUser }, { data: newUser }] = useUserCountQueries();
+  const dateRange = useRecoilValue(dateFilterParamsState);
+  const [{ data: allUser }, { data: newUser }] = useUserCountQueries(dateRange);
 
   return (
     <section className="flex gap-4">

@@ -18,10 +18,14 @@ import {
   CardTitle
 } from '@/src/shared/components/ui/card';
 import useWishCountQuery from '@/src/domains/analysis/queries/useWishChartQuery';
+import { useRecoilValue } from 'recoil';
+import { dateFilterParamsState } from '@/src/domains/analysis/atoms/date-filter';
 
 function WishCountChart() {
-  const { data: wishCount } = useWishCountQuery();
+  const dateRange = useRecoilValue(dateFilterParamsState);
+  const { data: wishCount, error } = useWishCountQuery(dateRange);
 
+  if (error) return '에러';
   if (!wishCount) return null;
 
   return (

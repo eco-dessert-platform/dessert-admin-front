@@ -11,7 +11,6 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import { useRecoilValue } from 'recoil';
-import moment from 'moment';
 import {
   Card,
   CardContent,
@@ -22,26 +21,14 @@ import {
 import { ReviewChartData } from '@/src/domains/analysis/types/review';
 import reviewCountMockData from '@/src/domains/analysis/mock/reviewCountMockData.json';
 import { dateFilterState } from '@/src/domains/analysis/atoms/date-filter';
+import { isDateInRange } from '@/src/domains/analysis/utils/filter';
 
 export default function ReviewAccCountChart() {
   const { from, to } = useRecoilValue(dateFilterState);
 
-  const filteredData = reviewCountMockData.filter((el) => {
-    const currentDate = new Date(el.date);
-
-    if (!from && !to) return false;
-
-    return (
-      currentDate >=
-        moment(from ?? to)
-          .startOf('day')
-          .toDate() &&
-      currentDate <=
-        moment(to ?? from)
-          .endOf('day')
-          .toDate()
-    );
-  });
+  const filteredData = reviewCountMockData.filter(({ date }) =>
+    isDateInRange({ date: new Date(date), from, to })
+  );
 
   return (
     <div className="flex h-full w-full flex-col gap-2">
@@ -61,7 +48,7 @@ export default function ReviewAccCountChart() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="value" name="리뷰" stroke="#8884d8" />
+          <Line type="monotone" dataKey="value" name="리뷰" />
         </LineChart>
       </ResponsiveContainer>
     </div>

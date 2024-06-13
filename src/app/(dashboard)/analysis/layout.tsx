@@ -4,12 +4,11 @@ import DateFilter from './_blocks/DateFilter';
 
 function Layout({ children }: PropsWithChildren) {
   return (
-    <div className="flex w-full flex-col">
+    <div className="my-10 flex w-full flex-col">
       <div className="my-10 flex items-center justify-between">
         <AnalysisTab />
         <DateFilter />
       </div>
-
       {children}
     </div>
   );
