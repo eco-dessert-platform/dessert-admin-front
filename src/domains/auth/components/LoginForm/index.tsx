@@ -15,7 +15,6 @@ import { Label } from '@/src/shared/components/ui/label';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import PATH from '@/src/shared/constants/path';
 
 type FormData = {
   id: string;
@@ -24,16 +23,10 @@ type FormData = {
 
 export default function LoginForm() {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm();
+  const { register, handleSubmit } = useForm<FormData>();
 
-  const onSubmit = (data: any) => {
-    // TODO: authentication process
-    console.log({ data });
-    router.push(PATH.inflow);
+  const onSubmit = () => {
+    router.push('/');
   };
 
   return (

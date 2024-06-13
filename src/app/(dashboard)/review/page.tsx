@@ -1,5 +1,3 @@
-function Page() {
-  return <>ReviewPage</>;
+export default async function ReviewPage() {
+  return <>Review</>;
 }
-
-export default Page;

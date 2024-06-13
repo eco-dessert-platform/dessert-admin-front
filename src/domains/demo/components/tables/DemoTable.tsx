@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+
 'use client';
 
 import * as React from 'react';

@@ -17,6 +17,7 @@ import {
   CardHeader,
   CardTitle
 } from '@/src/shared/components/ui/card';
+import useWishCountQuery from '@/src/domains/analysis/queries/useWishChartQuery';
 
 function WishCountChart() {
   const { data: wishCount } = useWishCountQuery();
