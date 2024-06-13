@@ -18,26 +18,28 @@ import {
   CardHeader,
   CardTitle
 } from '@/src/shared/components/ui/card';
-import { ReviewChartData } from '@/src/domains/analysis/types/review';
-import reviewCountMockData from '@/src/domains/analysis/mock/reviewCountMockData.json';
-import { dateFilterState } from '@/src/domains/analysis/atoms/date-filter';
-import { isDateInRange } from '@/src/domains/analysis/utils/filter';
+import { dateFilterParamsState } from '@/src/domains/analysis/atoms/date-filter';
+import useAccReviewChartQuery from '@/src/domains/analysis/queries/useAccReviewChartQuery';
 
 export default function ReviewAccCountChart() {
-  const { from, to } = useRecoilValue(dateFilterState);
-
-  const filteredData = reviewCountMockData.filter(({ date }) =>
-    isDateInRange({ date: new Date(date), from, to })
-  );
+  const { startDate, endDate } = useRecoilValue(dateFilterParamsState);
+  const { data: accReviewCount } = useAccReviewChartQuery({ startDate, endDate });
 
   return (
     <div className="flex h-full w-full flex-col gap-2">
-      <CustomTotal data={filteredData} />
+      <Card className="w-80">
+        <CardHeader>
+          <CardTitle>총 리뷰</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>{accReviewCount?.at(-1)?.count}</CardDescription>
+        </CardContent>
+      </Card>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           width={500}
           height={300}
-          data={filteredData}
+          data={accReviewCount}
           margin={{
             top: 5,
             bottom: 5
@@ -48,25 +50,9 @@ export default function ReviewAccCountChart() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="value" name="리뷰" />
+          <Line type="monotone" dataKey="value" name="누적 리뷰" />
         </LineChart>
       </ResponsiveContainer>
-    </div>
-  );
-}
-
-function CustomTotal({ data }: { data: ReviewChartData[] }) {
-  const total = data.reduce((sum, item) => sum + item.value, 0);
-  return (
-    <div className="grid grid-cols-2 gap-3 py-3 sm:grid-cols-4 sm:px-14">
-      <Card>
-        <CardHeader>
-          <CardTitle>총 리뷰</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CardDescription>{total}</CardDescription>
-        </CardContent>
-      </Card>
     </div>
   );
 }
