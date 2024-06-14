@@ -3,11 +3,11 @@ import { DateRangeParams } from '@/src/shared/types/request';
 import { analysisQueryKey } from './queryKey';
 import analysisService from './service';
 
-const useWishCountQuery = (dateRange: DateRangeParams) =>
+const useAccReviewChartQuery = (dateRange: DateRangeParams) =>
   useQuery({
-    queryKey: analysisQueryKey.wish(dateRange),
-    queryFn: () => analysisService.getWishCount(dateRange),
+    queryKey: analysisQueryKey.review({ type: 'accumulation', ...dateRange }),
+    queryFn: () => analysisService.getReviewAccCount(dateRange),
     placeholderData: keepPreviousData
   });
 
-export default useWishCountQuery;
+export default useAccReviewChartQuery;

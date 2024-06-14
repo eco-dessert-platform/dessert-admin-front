@@ -10,7 +10,7 @@ function AnalysisTab() {
   const pathname = usePathname();
 
   return (
-    <Tabs value={pathname} className="mb-4">
+    <Tabs value={pathname}>
       <TabsList>
         <TabsTrigger value={inflow.href} asChild>
           <Link href={inflow.href}>{inflow.name}</Link>
