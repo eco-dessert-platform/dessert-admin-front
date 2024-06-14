@@ -15,11 +15,11 @@ jobs:
 
       - name: 환경 변수를 설정합니다.
         run: |
-          echo "NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL" >> .env
+          echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" >> .env
           echo "NEXT_PUBLIC_MOCK_API_URL=$NEXT_PUBLIC_MOCK_API_URL" >> .env
 
         env:
-          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
           NEXT_PUBLIC_MOCK_API_URL: ${{ secrets.NEXT_PUBLIC_MOCK_API_URL }}
 
       - name: 도커 이미지를 생성하고 도커 허브에 업로드합니다.
