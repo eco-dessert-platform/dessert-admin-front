@@ -1,5 +1,5 @@
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
-import chartService from '@/src/domains/analysis/queries/service';
+import analysisService from '@/src/domains/analysis/queries/service';
 import { analysisQueryKey } from '@/src/domains/analysis/queries/queryKey';
 import { INITIAL_DATE_RANGE } from '@/src/shared/constants/date';
 import UserCountSection from './_blocks/UserCountSection';
@@ -11,15 +11,15 @@ async function ActivePage() {
   await Promise.all([
     queryClient.prefetchQuery({
       queryKey: analysisQueryKey.wish(INITIAL_DATE_RANGE),
-      queryFn: () => chartService.getWishCount(INITIAL_DATE_RANGE)
+      queryFn: () => analysisService.getWishCount(INITIAL_DATE_RANGE)
     }),
     queryClient.prefetchQuery({
       queryKey: analysisQueryKey.user({ type: 'all', ...INITIAL_DATE_RANGE }),
-      queryFn: () => chartService.getAllUserCount()
+      queryFn: () => analysisService.getAllUserCount()
     }),
     queryClient.prefetchQuery({
       queryKey: analysisQueryKey.user({ type: 'new', ...INITIAL_DATE_RANGE }),
-      queryFn: () => chartService.getNewUserCount(INITIAL_DATE_RANGE)
+      queryFn: () => analysisService.getNewUserCount(INITIAL_DATE_RANGE)
     })
   ]);
 
