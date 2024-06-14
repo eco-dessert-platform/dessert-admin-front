@@ -2,6 +2,7 @@
 
 import {
   CartesianGrid,
+  Legend,
   Line,
   LineChart,
   ReferenceLine,
@@ -50,12 +51,13 @@ function WishCountChart() {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
+          <Legend />
           <XAxis dataKey="date" />
-          <YAxis label={{ value: '이용 횟수(회)', angle: -90, position: 'insideLeft' }} />
+          <YAxis />
           <Line name="찜 이용 횟수" className="stroke-purple-100" type="monotone" dataKey="count" />
           <ReferenceLine
             y={wishCount?.average}
-            label={{ value: '평균 값', position: 'insideBottomRight' }}
+            label={{ value: `평균 값(${wishCount?.average})`, position: 'insideBottomRight' }}
             stroke="red"
           />
         </LineChart>

@@ -10,21 +10,21 @@ async function ActivePage() {
 
   await Promise.all([
     queryClient.prefetchQuery({
-      queryKey: analysisQueryKey.wish(),
+      queryKey: analysisQueryKey.wish(INITIAL_DATE_RANGE),
       queryFn: () => chartService.getWishCount(INITIAL_DATE_RANGE)
     }),
     queryClient.prefetchQuery({
-      queryKey: analysisQueryKey.user('all'),
+      queryKey: analysisQueryKey.user({ type: 'all', ...INITIAL_DATE_RANGE }),
       queryFn: () => chartService.getAllUserCount()
     }),
     queryClient.prefetchQuery({
-      queryKey: analysisQueryKey.user('new'),
+      queryKey: analysisQueryKey.user({ type: 'new', ...INITIAL_DATE_RANGE }),
       queryFn: () => chartService.getNewUserCount(INITIAL_DATE_RANGE)
     })
   ]);
 
   return (
-    <section className="flex flex-col gap-20">
+    <section className="flex flex-col gap-20 py-20">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <UserCountSection />
         <WishCountChart />

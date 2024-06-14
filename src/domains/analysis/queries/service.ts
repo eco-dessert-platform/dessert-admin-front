@@ -26,13 +26,14 @@ class AnalysisService extends Service {
     const { data } = await this.axiosExtend.get<ResultResponse<UserCountResponse>>(
       `/analytics/new-members/count?${params}`
     );
+
     return data.result;
   }
 
   async getReviewCount({ startDate, endDate }: DateRangeParams) {
     const params = objToParams({ startDate, endDate });
     const { data } = await this.axiosExtend.get<ResultResponse<ReviewCount>>(
-      `${process.env.NEXT_PUBLIC_MOCK_API_URL}/mock/review-count.json?${params}`
+      `/analytics/reviews?${params}`
     );
     return data.result;
   }
@@ -40,7 +41,7 @@ class AnalysisService extends Service {
   async getReviewAccCount({ startDate, endDate }: DateRangeParams) {
     const params = objToParams({ startDate, endDate });
     const { data } = await this.axiosExtend.get<ListResponse<ReviewAccCount>>(
-      `${process.env.NEXT_PUBLIC_MOCK_API_URL}/mock/review-count.json?${params}`
+      `/analytics/accumulated-reviews/count?${params}`
     );
     return data.list;
   }

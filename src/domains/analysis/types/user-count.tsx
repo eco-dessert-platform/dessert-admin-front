@@ -1,3 +1,3 @@
 export interface UserCountResponse {
-  memberCount: number;
+  count: number;
 }

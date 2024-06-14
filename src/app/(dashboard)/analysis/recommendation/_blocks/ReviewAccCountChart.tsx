@@ -50,7 +50,7 @@ export default function ReviewAccCountChart() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="value" name="누적 리뷰" />
+          <Line type="monotone" dataKey="count" name="누적 리뷰" />
         </LineChart>
       </ResponsiveContainer>
     </div>

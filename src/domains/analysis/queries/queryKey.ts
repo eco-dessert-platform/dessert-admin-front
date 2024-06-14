@@ -1,10 +1,11 @@
 export const analysisQueryKey = {
   all: ['chart'],
-  wish: () => [...analysisQueryKey.all, 'wish'],
+  wishes: () => [...analysisQueryKey.all, 'wish'],
+  wish: (filter: Object) => [...analysisQueryKey.wishes(), 'wish', filter],
 
   users: () => [...analysisQueryKey.all, 'user'],
-  user: (filter: string) => [...analysisQueryKey.users(), filter],
+  user: (filter: Object) => [...analysisQueryKey.users(), filter],
 
   reviews: () => [...analysisQueryKey.all, 'review'],
-  review: (filter: string) => [...analysisQueryKey.reviews(), filter]
+  review: (filter: Object) => [...analysisQueryKey.reviews(), filter]
 };

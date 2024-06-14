@@ -34,7 +34,7 @@ export default function ReviewCountChart() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="value" name="리뷰" />
+        <Line type="monotone" dataKey="count" name="리뷰" />
       </LineChart>
     </ResponsiveContainer>
   );
