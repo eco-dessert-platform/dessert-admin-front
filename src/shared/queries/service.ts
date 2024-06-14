@@ -3,7 +3,7 @@ import axios, { AxiosInstance } from 'axios';
 class Service {
   public axiosExtend: AxiosInstance;
 
-  private baseURL = process.env.NEXT_PUBLIC_API_URL;
+  private baseURL = `${process.env.NEXT_PUBLIC_API_URL}/api/v1`;
 
   constructor() {
     const api = axios.create({

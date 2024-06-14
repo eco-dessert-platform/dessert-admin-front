@@ -12,7 +12,7 @@ export default function GlobalHeader() {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   return (
     <>
-      <header className="sticky top-0 flex h-[80px] w-full items-center gap-20 bg-background px-5 shadow">
+      <header className="sticky top-0 z-header flex h-[80px] w-full items-center gap-20 bg-background px-5 shadow">
         <section className="flex items-center gap-5">
           <Button
             className="sm:hidden"

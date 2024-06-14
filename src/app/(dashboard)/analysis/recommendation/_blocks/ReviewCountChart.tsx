@@ -11,52 +11,31 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import { useRecoilValue } from 'recoil';
-import moment from 'moment';
-import { reviewCountChartFilterDates } from '@/src/domains/analysis/atoms/review';
-import reviewCountMockData from '@/src/domains/analysis/mock/reviewCountMockData.json';
+import { dateFilterParamsState } from '@/src/domains/analysis/atoms/date-filter';
+import useReviewChartQuery from '@/src/domains/analysis/queries/useReviewChartQuery';
 
 export default function ReviewCountChart() {
-  const { from, to } = useRecoilValue(reviewCountChartFilterDates);
-
-  const filteredData = reviewCountMockData.filter((el) => {
-    const currentDate = new Date(el.date);
-
-    if (!from && !to) return false;
-
-    return (
-      currentDate >=
-        moment(from ?? to)
-          .startOf('day')
-          .toDate() &&
-      currentDate <=
-        moment(to ?? from)
-          .endOf('day')
-          .toDate()
-    );
-  });
+  const { startDate, endDate } = useRecoilValue(dateFilterParamsState);
+  const { data: reviewCount } = useReviewChartQuery({ startDate, endDate });
 
   return (
-    <div className="flex h-full w-full flex-col gap-2">
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          width={500}
-          height={300}
-          data={filteredData}
-          margin={{
-            top: 5,
-            // right: 30,
-            // left: 20,
-            bottom: 5
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="value" name="리뷰" stroke="#8884d8" />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart
+        width={500}
+        height={300}
+        data={reviewCount?.dateAndCount}
+        margin={{
+          top: 5,
+          bottom: 5
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="count" name="리뷰" />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }
